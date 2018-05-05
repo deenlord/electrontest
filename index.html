@@ -5,7 +5,11 @@
   <title>ShoppingList</title>
 </head>
 <body>
- <h1>Deen's List</h1>
+  <nav>
+    <div class="nav-wrapper">
+      <a class="brand-logo center">Deen's List</a>
+    </div>
+  </nav>
   
   <ul></ul>
 
@@ -16,7 +20,9 @@
     
     // add item
     ipcRenderer.on('item:add', function(e, item){
+      ul.className = "collection";
       const li = document.createElement('li');
+      li.className = 'collection-item';
       const itemText = document.createTextNode(item);
       li.appendChild(itemText);
       ul.appendChild(li);
@@ -25,6 +31,7 @@
     // clear all items
     ipcRenderer.on('item:clear', function(){
       ul.innerHTML = '';
+      ul.className = '';
     });
 
     // remove single item
@@ -32,6 +39,9 @@
     ul.addEventListener('dblclick', removeItem);
     function removeItem(e) {
       e.target.remove();
+      if (ul.children.length == 0) {
+        ul.className = '';
+      }
     }
 
   </script>

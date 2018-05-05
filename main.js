@@ -3,6 +3,9 @@ const url = require('url');
 const path = require('path');
 const {app, BrowserWindow, Menu, ipcMain} = electron;
 
+// set environment - comment next line for developer mode.
+process.env.node_env = 'production';
+
 let mainWindow;
 let addWin;
 
@@ -51,10 +54,6 @@ ipcMain.on('item:add', function(e, item) {
     mainWindow.webContents.send('item:add', item);
     addWin.close();
 });
-
-// remove items
-
-
 
 // menu template
 

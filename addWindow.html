@@ -5,13 +5,15 @@
     <title>Add Item</title>
 </head>
 <body>
-    <form>
-        <div>
-            <label>Enter a new Item</label>
-            <input type="text" id="item" autofocus>
-        </div>
-        <button type="submit">Add Item</button>
-    </form>
+    <div class="container">
+        <form>
+            <div>
+                <label>Enter a new Item</label>
+                <input type="text" id="item" autofocus>
+            </div>
+            <button class="btn waves-effect waves-light" type="submit">Add Item</button>
+        </form>
+    </div>
     <script>
             const electron = require('electron');
             const {ipcRenderer} = electron;
