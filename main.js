@@ -52,6 +52,9 @@ ipcMain.on('item:add', function(e, item) {
     addWin.close();
 });
 
+// remove items
+
+
 
 // menu template
 
@@ -65,7 +68,11 @@ const mainMenuTemplate = [
                     addItemWindow();
                } 
             },
-            {label: 'Clear All Items'},
+            {label: 'Clear All Items',
+                click() {
+                    mainWindow.webContents.send('item:clear');
+                }    
+            },
             {label: 'Quit', 
                 accelerator: process.platform == 'darwin' ? 'Command+Q' : 'Ctrl+Q',
                 click()
@@ -86,12 +93,14 @@ if (process.env.node_env != 'production'){
         submenu:[
             {
             label: 'Toggle DevTools',
-            accelerator: process.platform == 'darwin' ? 'Command+I' : 'Ctrl_I',
+            accelerator: process.platform == 'darwin' ? 'Command+I' : 'Ctrl+I',
                 click(item, focustedWindow){
                     focustedWindow.toggleDevTools();
                 }
             },
-            {
+            {   
+                label: 'Refresh Page',
+                accelerator: process.platform == 'darwin'  ? 'Command+R' : 'Ctrl+R',
                 role: 'reload'
             }
         

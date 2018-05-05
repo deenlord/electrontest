@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
   <title>ShoppingList</title>
 </head>
 <body>
- <h1>Shopping List</h1>
+ <h1>Deen's List</h1>
   
   <ul></ul>
 
@@ -12,13 +13,26 @@
     const electron = require('electron');
     const {ipcRenderer} = electron;
     const ul = document.querySelector('ul');
-
+    
+    // add item
     ipcRenderer.on('item:add', function(e, item){
       const li = document.createElement('li');
       const itemText = document.createTextNode(item);
       li.appendChild(itemText);
       ul.appendChild(li);
     });
+
+    // clear all items
+    ipcRenderer.on('item:clear', function(){
+      ul.innerHTML = '';
+    });
+
+    // remove single item
+
+    ul.addEventListener('dblclick', removeItem);
+    function removeItem(e) {
+      e.target.remove();
+    }
 
   </script>
 </body>
